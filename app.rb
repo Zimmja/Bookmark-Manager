@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require './lib/bookmark'
+require 'pg'
 require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/reloader' if development?
@@ -14,11 +15,14 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/' do
+    @conn = PG::Connection.open(:dbname => 'bookmark_manager')
+    $table_values = @conn.exec("SELECT * FROM bookmarks").to_a
     erb(:index)
   end
 
   get '/bookmarks' do
     @bookmarks = [
+      Bookmark.new('Makers', $table_values[0]["url"]),
       Bookmark.new('Reddit', 'https://www.reddit.com/'),
       Bookmark.new('Codewars', 'https://www.codewars.com/'),
       Bookmark.new('Github', 'https://github.com/')

@@ -11,6 +11,7 @@ gem 'webrick'
 
 group :development, :test do
   gem 'capybara'
+  gem 'pg'
   gem 'rspec'
   gem 'rubocop'
   gem 'selenium-webdriver'
