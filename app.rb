@@ -13,7 +13,7 @@ class Default < Sinatra::Base
   end
 
   get '/' do
-    'Hello world!'
+    erb(:index)
   end
 
   run! if app_file == $PROGRAM_NAME
