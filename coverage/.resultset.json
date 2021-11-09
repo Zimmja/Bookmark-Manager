@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/zimmja/Desktop/MAKERS/Week04/bookmark_manager/spec/bookmark_spec.rb": {
+      "/Users/andybird/projects/mattweek4/Bookmark-manager/spec/bookmark_spec.rb": {
         "lines": [
           null,
           null,
@@ -14,10 +14,18 @@
           1,
           1,
           null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
           null
         ]
       },
-      "/Users/zimmja/Desktop/MAKERS/Week04/bookmark_manager/spec/features/features_spec.rb": {
+      "/Users/andybird/projects/mattweek4/Bookmark-manager/spec/features/features_spec.rb": {
         "lines": [
           null,
           null,
@@ -35,6 +43,6 @@
         ]
       }
     },
-    "timestamp": 1636474181
+    "timestamp": 1636477653
   }
 }

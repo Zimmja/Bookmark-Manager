@@ -4,10 +4,10 @@ describe BookmarkManager do
   feature 'Viewing bookmarks' do
     scenario 'Presents a list of bookmarks to the user' do
       go_to_bookmarks
-      expect(page).to have_content 'Makers: http://www.makersacademy.com'
-      expect(page).to have_content 'Reddit: https://www.reddit.com/'
-      expect(page).to have_content 'Codewars: https://www.codewars.com/'
-      expect(page).to have_content 'Github: https://github.com/'
+      expect(page).to have_content 'http://www.twitter.com'
+      expect(page).to have_content 'http://www.google.com'
+      expect(page).to have_content 'http://www.destroyallsoftware.com'
+      expect(page).to have_content 'http://www.youtube.com'
     end
   end
 end
