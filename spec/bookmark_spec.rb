@@ -2,18 +2,11 @@
 
 require 'bookmark'
 
-describe Bookmark do
-  let(:bookmark) { Bookmark.new(:url, :name) }
-
-  it 'initializes with a name and a url' do
-    expect(bookmark.name).to eq :name
-    expect(bookmark.url).to eq :url
-  end
-
+describe BookmarkCollection do
   describe '#self.all' do
     it 'prints the list of bookmarks' do
       setup_database
-      bookmarks = Bookmark.all #([{ 'url' => 'double' }])
+      bookmarks = BookmarkCollection.all
       expect(bookmarks).to include 'http://www.makersacademy.com'
       expect(bookmarks).to include 'https://www.codewars.com'
       expect(bookmarks).to include 'https://www.reddit.com'

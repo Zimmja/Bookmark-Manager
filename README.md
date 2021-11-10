@@ -7,6 +7,10 @@ Requirement: Show a list of bookmarks
 As a user
 So I can quickly access my bookmarks
 I would like to see a list of all my bookmarks
+
+As a user
+So that I can keep bookmarks I like
+I would like to be able to add a new bookmark
 ```
 
 ### Domain Model

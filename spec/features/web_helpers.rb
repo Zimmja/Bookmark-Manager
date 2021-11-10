@@ -5,10 +5,6 @@ def go_to_bookmarks
   click_link('View bookmarks')
 end
 
-def open_test_bookmarks
-  (PG.connect(dbname: 'bookmark_manager')).exec('SELECT * FROM bookmarks')
-end
-
 def setup_database
   connection = PG.connect(dbname: 'bookmark_manager_test')
   connection.exec("INSERT INTO bookmarks (url) values('http://www.makersacademy.com');")
