@@ -12,8 +12,8 @@ describe Bookmark do
 
   describe '#self.all' do
     it 'prints the list of bookmarks' do
-      bookmarks = Bookmark.all
-      expect(bookmarks).to include 'http://www.makersacademy.com'
+      bookmarks = Bookmark.all([{ 'url' => 'double' }])
+      expect(bookmarks).to eq ['double']
     end
   end
 end

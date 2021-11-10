@@ -9,9 +9,12 @@ class Bookmark
     @url = url
   end
 
-  def self.all
-    connection = PG.connect(dbname: 'bookmark_manager')
-    result = connection.exec('SELECT * FROM bookmarks')
+  def self.all(result = connect_bookmarks)
     result.map { |bookmark| bookmark['url'] }
+  end
+
+  def self.connect_bookmarks
+    connection = PG.connect(dbname: 'bookmark_manager')
+    connection.exec('SELECT * FROM bookmarks')
   end
 end
