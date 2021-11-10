@@ -16,12 +16,7 @@ class Bookmark
   end
 
   def self.connect_bookmarks
-    connection = ""
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'bookmark_manager_test')
-    else
-      connection = PG.connect(dbname: 'bookmark_manager')
-    end
+    connection = PG.connect(dbname: "bookmark_manager#{'_test' if ENV['ENVIRONMENT'] == 'test' }")
     connection.exec('SELECT * FROM bookmarks')
   end
 end
