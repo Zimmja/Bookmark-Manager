@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pg'
+
 # Stores website information, including url
 class Bookmark
   attr_reader :name, :url
@@ -14,6 +16,12 @@ class Bookmark
   end
 
   def self.connect_bookmarks
-    (PG.connect(dbname: 'bookmark_manager')).exec('SELECT * FROM bookmarks')
+    connection = ""
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'bookmark_manager_test')
+    else
+      connection = PG.connect(dbname: 'bookmark_manager')
+    end
+    connection.exec('SELECT * FROM bookmarks')
   end
 end

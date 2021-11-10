@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+require_relative './setup_test_database'
+
 ENV['RACK_ENV'] = 'test'
+ENV['ENVIRONMENT'] = 'test'
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 require 'capybara'
@@ -24,4 +27,8 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  config.before(:each) do
+    setup_test_database
+  end
 end
