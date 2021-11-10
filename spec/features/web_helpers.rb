@@ -5,9 +5,8 @@ def go_to_bookmarks
   click_link('View bookmarks')
 end
 
-def setup_database
-  connection = PG.connect(dbname: 'bookmark_manager_test')
-  connection.exec("INSERT INTO bookmarks (url) values('http://www.makersacademy.com');")
-  connection.exec("INSERT INTO bookmarks (url) values('https://www.codewars.com');")
-  connection.exec("INSERT INTO bookmarks (url) values('https://www.reddit.com');")
+def add_to_database(adding_url)
+  visit('/')
+  fill_in('new_url', with: adding_url)
+  click_button('Add to database')
 end

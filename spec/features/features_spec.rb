@@ -5,11 +5,18 @@ require 'pg'
 describe BookmarkManager do
   feature 'Viewing bookmarks' do
     scenario 'Presents a list of bookmarks to the user' do
-      setup_database
       go_to_bookmarks
-      expect(page).to have_content 'http://www.makersacademy.com'
-      expect(page).to have_content 'https://www.codewars.com'
-      expect(page).to have_content 'https://www.reddit.com'
+      ['http://www.makersacademy.com',
+       'https://www.codewars.com',
+       'https://www.reddit.com'].each { |url| expect(page).to have_content url }
+    end
+  end
+
+  feature 'Adding bookmarks' do
+    scenario 'Completes a form and adds the entered url to the database' do
+      add_to_database('https://www.youtube.com')
+      go_to_bookmarks
+      expect(page).to have_content 'https://www.youtube.com'
     end
   end
 end
