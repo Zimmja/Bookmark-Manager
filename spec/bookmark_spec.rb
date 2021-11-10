@@ -17,8 +17,10 @@ describe Bookmark do
       connection.exec("INSERT INTO bookmarks (url) values('https://www.codewars.com');")
       connection.exec("INSERT INTO bookmarks (url) values('https://www.reddit.com');")
 
-      bookmarks = Bookmark.all([{ 'url' => 'double' }])
-      expect(bookmarks).to eq ['double']
+      bookmarks = Bookmark.all #([{ 'url' => 'double' }])
+      expect(bookmarks).to include 'http://www.makersacademy.com'
+      expect(bookmarks).to include 'https://www.codewars.com'
+      expect(bookmarks).to include 'https://www.reddit.com'
     end
   end
 end
