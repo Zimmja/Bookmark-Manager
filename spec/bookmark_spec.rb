@@ -4,6 +4,7 @@ require 'bookmark'
 
 describe Bookmark do
   let(:bookmark) { Bookmark.new(:url, :name) }
+  
 
   it 'initializes with a name and a url' do
     expect(bookmark.name).to eq :name
