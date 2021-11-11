@@ -17,12 +17,17 @@ class Bookmark
   end
 
   def self.add(name, url)
-    result = connection.exec_params("INSERT INTO bookmarks (url, name) VALUES ($1, $2) RETURNING id, url, name", [url,name])
-    Bookmark.new(result[0]['name'], result[0]['url'], result[0]['id'])
+    c = connection.exec_params('INSERT INTO bookmarks (url, name) VALUES ($1, $2) RETURNING id, url, name', [url, name])
+    Bookmark.new(c[0]['name'], c[0]['url'], c[0]['id'])
+  end
+
+  def self.update(id, name, url)
+    connection.exec_params('UPDATE bookmarks SET name=$1 WHERE id = $2', [name, id]) unless name.nil?
+    connection.exec_params('UPDATE bookmarks SET url=$1 WHERE id = $2', [url, id]) unless url.nil?
   end
 
   def self.delete(id)
-    connection.exec_params("DELETE FROM bookmarks WHERE id=$1",[id])
+    connection.exec_params('DELETE FROM bookmarks WHERE id = $1', [id])
   end
 
   def self.retrieve_bookmarks

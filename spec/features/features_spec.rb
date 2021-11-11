@@ -23,8 +23,14 @@ describe BookmarkManager do
       visit('/')
       add_to_database('Delsite', 'https://www.delsite.com')
       expect(page).to have_content 'Delsite'
-      delete_from_database('Delsite')
+      delete_from_database(find_in_database_by_name("'Delsite'")['id'])
       expect(page).not_to have_content 'Delsite'
     end
   end
+
+  # feature 'Updating bookmarks' do
+  #   visit('/')
+  #   add_to_database('Upsite', 'https://www.upsite.com')
+  #   click_button("Update 1")
+  # end
 end

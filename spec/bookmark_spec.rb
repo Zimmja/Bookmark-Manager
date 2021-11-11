@@ -31,4 +31,14 @@ describe Bookmark do
       expect { Bookmark.delete(website_bm.id) }.to change { Bookmark.all.count }.by(-1)
     end
   end
+
+  describe '#.update' do
+    it 'updates bookmark information' do
+      ts_bm = Bookmark.add('Testsite', 'https://www.testsite.com')
+      check_expectations(ts_bm, 'Testsite', 'https://www.testsite.com')
+
+      Bookmark.update(ts_bm.id, 'Newsite', 'https://www.newsite.com')
+      check_expectations(ts_bm, 'Newsite', 'https://www.newsite.com')
+    end
+  end
 end
