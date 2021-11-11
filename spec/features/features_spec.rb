@@ -14,9 +14,9 @@ describe BookmarkManager do
 
   feature 'Adding bookmarks' do
     scenario 'Completes a form and adds the entered url to the database' do
-      add_to_database('https://www.youtube.com')
+      add_to_database('Youtube', 'https://www.youtube.com')
       go_to_bookmarks
-      expect(page).to have_content 'https://www.youtube.com'
+      expect(page).to have_content 'Youtube: https://www.youtube.com'
     end
   end
 end

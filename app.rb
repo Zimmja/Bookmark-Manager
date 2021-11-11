@@ -19,12 +19,12 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/add' do
-    BookmarkCollection.add(params[:new_url])
+    Bookmark.add(params[:new_name], params[:new_url])
     redirect to('/')
   end
 
   get '/bookmarks' do
-    @bookmarks = BookmarkCollection.all
+    @bookmarks = Bookmark.all
     erb(:'bookmarks/index')
   end
 

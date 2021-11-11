@@ -3,13 +3,20 @@
 require 'pg'
 
 # Stores website information, including url
-class BookmarkCollection
-  def self.all(result = retrieve_bookmarks)
-    result.map { |bookmark| bookmark['url'] }
+class Bookmark
+  attr_reader :name, :url
+
+  def initialize(name, url)
+    @name = name
+    @url = url
   end
 
-  def self.add(url)
-    connection.exec("INSERT INTO bookmarks (url) values('#{url}')")
+  def self.all(result = retrieve_bookmarks)
+    result.map { |bookmark| Bookmark.new(bookmark['name'], bookmark['url']) }
+  end
+
+  def self.add(name, url)
+    connection.exec("INSERT INTO bookmarks (url, name) VALUES ('#{url}', '#{name}')")
   end
 
   def self.retrieve_bookmarks
