@@ -17,8 +17,12 @@ class Bookmark
   end
 
   def self.add(name, url)
-    result = connection.exec("INSERT INTO bookmarks (url, name) VALUES ('#{url}', '#{name}') RETURNING id, url, name")
+    result = connection.exec_params("INSERT INTO bookmarks (url, name) VALUES ($1, $2) RETURNING id, url, name", [url,name])
     Bookmark.new(result[0]['name'], result[0]['url'], result[0]['id'])
+  end
+
+  def self.delete(id)
+    connection.exec_params("DELETE FROM bookmarks WHERE id=$1",[id])
   end
 
   def self.retrieve_bookmarks

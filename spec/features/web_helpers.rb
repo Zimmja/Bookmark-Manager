@@ -14,6 +14,10 @@ def add_to_database(adding_name, adding_url)
   click_button('Add to database')
 end
 
+def delete_from_database(deleting_name)
+  click_button("Delete #{deleting_name}")
+end
+
 def find_in_database(p_id)
   connection = PG.connect(dbname: 'bookmark_manager_test')
   result = connection.query("SELECT * FROM bookmarks WHERE id = #{p_id};")
