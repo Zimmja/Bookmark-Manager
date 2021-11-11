@@ -24,10 +24,10 @@ def find_in_database(p_id)
   result.first
 end
 
-def find_in_database_by_name(p_name)
+def find_id_from_name(p_name)
   connection = PG.connect(dbname: 'bookmark_manager_test')
-  result = connection.query("SELECT * FROM bookmarks WHERE name = #{p_name};")
-  result.first
+  result = connection.query("SELECT * FROM bookmarks WHERE name = '#{p_name}';")
+  result.first['id']
 end
 
 def check_expectations(bmk, name, url)

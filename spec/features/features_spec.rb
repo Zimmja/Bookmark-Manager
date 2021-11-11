@@ -23,14 +23,21 @@ describe BookmarkManager do
       visit('/')
       add_to_database('Delsite', 'https://www.delsite.com')
       expect(page).to have_content 'Delsite'
-      delete_from_database(find_in_database_by_name("'Delsite'")['id'])
+      delete_from_database(find_id_from_name('Delsite'))
       expect(page).not_to have_content 'Delsite'
     end
   end
 
-  # feature 'Updating bookmarks' do
-  #   visit('/')
-  #   add_to_database('Upsite', 'https://www.upsite.com')
-  #   click_button("Update 1")
-  # end
+  feature 'Updating bookmarks' do
+    scenario 'Decides to update a bookmark, enters new details, and updates bookmark' do
+      visit('/')
+      add_to_database('Upsite', 'https://www.upsite.com')
+      go_to_update(find_id_from_name('Upsite')) # Nagivates to /update
+      fill_in('new_name', with: 'Downsite')
+      fill_in('new_url', with: 'https://www.downsite.com')
+      click_button('Update')
+      expect(page).to have_content 'Downsite'
+      expect(page).not_to have_content 'Upsite'
+    end
+  end
 end
