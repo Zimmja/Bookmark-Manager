@@ -25,7 +25,11 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/update' do
-    @bookmark_id = params[:update_param]
+    redirect to("/update?bookmark=#{params[:update_param]}")
+  end
+
+  get '/update' do
+    @bookmark = params[:bookmark]
     erb(:'update/index')
   end
 
