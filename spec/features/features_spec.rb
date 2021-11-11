@@ -13,14 +13,12 @@ describe BookmarkManager do
   feature 'Adding bookmarks' do
     scenario 'Completes a form and adds the entered url to the database' do
       add_to_database('Youtube', 'https://www.youtube.com')
-      visit('/')
       expect(page).to have_content 'Youtube'
     end
   end
 
   feature 'Deleting bookmarks' do
     scenario 'Deletes a given bookmark' do
-      visit('/')
       add_to_database('Delsite', 'https://www.delsite.com')
       expect(page).to have_content 'Delsite'
       delete_from_database(find_id_from_name('Delsite'))
@@ -30,11 +28,10 @@ describe BookmarkManager do
 
   feature 'Updating bookmarks' do
     scenario 'Decides to update a bookmark, enters new details, and updates bookmark' do
-      visit('/')
       add_to_database('Upsite', 'https://www.upsite.com')
       go_to_update(find_id_from_name('Upsite')) # Nagivates to /update
-      fill_in('new_name', with: 'Downsite')
-      fill_in('new_url', with: 'https://www.downsite.com')
+      fill_in('bmk_name', with: 'Downsite')
+      fill_in('bmk_url', with: 'https://www.downsite.com')
       click_button('Update')
       expect(page).to have_content 'Downsite'
       expect(page).not_to have_content 'Upsite'

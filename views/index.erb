@@ -7,6 +7,10 @@
         <input type="hidden" name="delete_param" value=<%= bookmark.id %>>
         <button type="submit" value="Delete <%= bookmark.id %>">Delete</button>
       </form>
+      <form action="/update" method="post">
+        <input type="hidden" name="update_param" value=<%= bookmark.id %>>
+        <button type="submit" value="Update <%= bookmark.id %>">Update</button>
+      </form>
     </li>
   <% end %>
 </ul>

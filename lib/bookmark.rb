@@ -22,8 +22,8 @@ class Bookmark
   end
 
   def self.update(id, name, url)
-    connection.exec_params('UPDATE bookmarks SET name=$1 WHERE id = $2', [name, id]) unless name.nil?
-    connection.exec_params('UPDATE bookmarks SET url=$1 WHERE id = $2', [url, id]) unless url.nil?
+    connection.exec_params('UPDATE bookmarks SET name=$1 WHERE id = $2', [name, id]) unless name == ''
+    connection.exec_params('UPDATE bookmarks SET url=$1 WHERE id = $2', [url, id]) unless url == ''
   end
 
   def self.delete(id)

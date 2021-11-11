@@ -24,6 +24,16 @@ class BookmarkManager < Sinatra::Base
     redirect to('/')
   end
 
+  post '/update' do
+    @bookmark_id = params[:update_param]
+    erb(:'update/index')
+  end
+
+  post '/update_bookmark_complete' do
+    Bookmark.update(params[:bmk_id], params[:bmk_name], params[:bmk_url])
+    redirect to('/')
+  end
+
   post '/delete' do
     Bookmark.delete(params[:delete_param])
     redirect to('/')

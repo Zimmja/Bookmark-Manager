@@ -18,6 +18,10 @@ def delete_from_database(deleting_name)
   click_button("Delete #{deleting_name}")
 end
 
+def go_to_update(updating_name)
+  click_button("Update #{updating_name}")
+end
+
 def find_in_database(p_id)
   connection = PG.connect(dbname: 'bookmark_manager_test')
   result = connection.query("SELECT * FROM bookmarks WHERE id = #{p_id};")
