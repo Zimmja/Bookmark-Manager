@@ -12,11 +12,11 @@ class Bookmark
   end
 
   def self.all(result = retrieve_bookmarks)
-    result.map { |bookmark| Bookmark.new(bookmark['name'], bookmark['url']) }
+    result.map { |bm| Bookmark.new(bm['name'], bm['url']) }
   end
 
   def self.add(name, url)
-    connection.exec("INSERT INTO bookmarks (url, name) VALUES ('#{url}', '#{name}')")
+    connection.exec("INSERT INTO bookmarks (url, name) VALUES ('#{url}', '#{name}') RETURNING url, name")
   end
 
   def self.retrieve_bookmarks

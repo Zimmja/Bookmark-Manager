@@ -1,0 +1,1 @@
+ADD TABLE bookmarks ADD COLUMN name VARCHAR(30);

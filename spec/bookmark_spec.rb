@@ -13,8 +13,9 @@ describe Bookmark do
 
   describe '#self.add' do
     it 'adds a bookmark to the database' do
-      Bookmark.add('Netflix', 'https://www.netflix.com/')
-      expect(Bookmark.all.last.name).to eq 'Netflix'
+      netflix_bookmark = Bookmark.add('Netflix', 'https://www.netflix.com').first
+      expect(netflix_bookmark['name']).to eq 'Netflix'
+      expect(netflix_bookmark['url']).to eq 'https://www.netflix.com'
     end
   end
 end
