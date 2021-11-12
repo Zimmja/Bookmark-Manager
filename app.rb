@@ -25,15 +25,6 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/update' do
-    redirect to("/update?bookmark=#{params[:update_param]}")
-  end
-
-  get '/update' do
-    @bookmark = params[:bookmark]
-    erb(:'update/index')
-  end
-
-  post '/update_bookmark_complete' do
     Bookmark.update(params[:bmk_id], params[:bmk_name], params[:bmk_url])
     redirect to('/')
   end
@@ -41,6 +32,15 @@ class BookmarkManager < Sinatra::Base
   post '/delete' do
     Bookmark.delete(params[:delete_param])
     redirect to('/')
+  end
+
+  post '/update_bmk' do
+    redirect to("/update_bmk?id=#{params[:update_param]}")
+  end
+
+  get '/update_bmk' do
+    @bookmark = params[:id]
+    erb(:'update/index')
   end
 
   run! if app_file == $PROGRAM_NAME
